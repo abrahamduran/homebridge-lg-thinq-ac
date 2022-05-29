@@ -5,6 +5,7 @@ import { HomebridgeLgThinqPlatform } from './platform'
 import { GetDashboardResponse } from './thinq/apiTypes'
 import AbstractCharacteristic from './characteristic/abstractCharacteristic'
 import getCharacteristicsForModel from './getCharacteristicsForModel'
+import getCharacteristicsForModel_ad from './getCharacteristicsForModel_ad'
 
 type Unpacked<T> = T extends (infer U)[] ? U : T
 
@@ -43,19 +44,14 @@ export class LgAirConditionerPlatformAccessory {
     private readonly accessory: PlatformAccessory,
   ) {
     const model = this.getDevice()?.modelName || 'Not available'
-
+    
     // set accessory information
     this.accessory
       .getService(this.platform.Service.AccessoryInformation)!
-      .setCharacteristic(
-        this.platform.Characteristic.Manufacturer,
-        'LG Electronics',
-      )
+      .setCharacteristic(this.platform.Characteristic.Manufacturer, 'LG Electronics')
       .setCharacteristic(this.platform.Characteristic.Model, model)
-      .setCharacteristic(
-        this.platform.Characteristic.Name,
-        this.getDevice()?.alias || 'Not available',
-      )
+      .setCharacteristic(this.platform.Characteristic.SerialNumber, this.getDeviceId() || 'Default Serial Number')
+      .setCharacteristic(this.platform.Characteristic.Name, this.getDevice()?.alias || 'Not available')
 
     this.service =
       this.accessory.getService(this.platform.Service.HeaterCooler) ??
@@ -66,7 +62,7 @@ export class LgAirConditionerPlatformAccessory {
     // this.accessory.getService('NAME') ?? this.accessory.addService(this.platform.Service.Lightbulb, 'NAME', 'USER_DEFINED_SUBTYPE');
 
     const deviceId = this.getDeviceId()!
-    this.characteristics = getCharacteristicsForModel(
+    this.characteristics = getCharacteristicsForModel_ad(
       model,
       this.platform,
       this.service,
