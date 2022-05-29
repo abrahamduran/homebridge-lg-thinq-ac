@@ -98,9 +98,16 @@ export class LgAirConditionerPlatformAccessory {
 
     try {
       this.platform.log.debug('Getting device status', this.getDeviceId())
+      
       const device = await this.platform.thinqApi.getDevice(this.getDeviceId()!)
       this.platform.log.debug('device response', device)
+      
+      const filterStatus = await this.platform.thinqApi.getDeviceFilterStatus(this.getDeviceId()!)
+      this.platform.log.debug('filter status response', filterStatus)
+      
       const snapshot = device.result.snapshot
+      snapshot['airState.filterMngStates.maxTime'] = filterStatus.result.data['airState.filterMngStates.maxTime']
+      snapshot['airState.filterMngStates.useTime'] = filterStatus.result.data['airState.filterMngStates.useTime']
       this.platform.log.debug('device response.result.snapshot', snapshot)
 
       for (const characteristic of this.characteristics) {
