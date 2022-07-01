@@ -4,15 +4,9 @@ import type { HomebridgeLgThinqPlatform } from './platform'
 
 import ActiveCharacteristic from './characteristic/activeCharacteristic'
 import AbstractCharacteristic from './characteristic/abstractCharacteristic'
-import SwingModeCharacteristic from './characteristic/swingModeCharacteristic'
-import RotationSpeedCharacteristic from './characteristic/rotationSpeedCharacteristic'
-import CoolingThresholdTemperatureCharacteristic from './characteristic/coolingThresholdTemperatureCharacteristic'
 import CoolingThresholdTemperatureCharacteristic_AD from './characteristic/coolingThresholdTemperatureCharacteristic_ad'
-import HeatingThresholdTemperatureCharacteristic from './characteristic/heatingThresholdTemperatureCharacteristic'
 import HeatingThresholdTemperatureCharacteristic_AD from './characteristic/heatingThresholdTemperatureCharacteristic_ad'
-import TargetHeaterCoolerStateCharacteristic from './characteristic/targetHeaterCoolerStateCharacteristic'
 import TargetHeatingCoolingStateCharacteristic_AD from './characteristic/targetHeaterCoolerStateCharacteristic_ad'
-import CurrentHeaterCoolerStateCharacteristic from './characteristic/currentHeaterCoolerStateCharacteristic'
 import CurrentHeaterCoolerStateCharacteristic_AD from './characteristic/currentHeaterCoolerStateCharacteristic_ad'
 import CurrentTemperatureCharacteristic from './characteristic/currentTemperatureCharacteristic'
 import FilterChangeCharacteristic from './characteristic/filterChangeCharacteristic'
@@ -41,16 +35,8 @@ export default function getCharacteristicsForModel_ad(
       service,
       deviceId,
     ),
-    new TargetHeatingCoolingStateCharacteristic_AD(
-      platform,
-      service,
-      deviceId,
-    ),
-    new CurrentHeaterCoolerStateCharacteristic_AD(
-      platform,
-      service,
-      deviceId
-    ),
+    new TargetHeatingCoolingStateCharacteristic_AD(platform, service, deviceId),
+    new CurrentHeaterCoolerStateCharacteristic_AD(platform, service, deviceId),
     new CurrentTemperatureCharacteristic(platform, service, deviceId),
     new FilterChangeCharacteristic(platform, service, deviceId),
     new FilterLifeCharacteristic(platform, service, deviceId),
