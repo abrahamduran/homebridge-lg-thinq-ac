@@ -119,6 +119,14 @@ export default abstract class AbstractCharacteristic<
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  logWarning(message: string, ...parameters: any[]) {
+    this.platform.log.warn(
+      this.constructor.name + ': ' + message,
+      ...parameters,
+    )
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   logDebug(message: string, ...parameters: any[]) {
     this.platform.log.debug(
       this.constructor.name + ': ' + message,

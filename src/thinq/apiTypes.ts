@@ -79,6 +79,17 @@ export type GetDeviceResponse = {
   }
 }
 
+export type GetFilterStatusResponse = {
+  resultCode: string
+  result: {
+    data: {
+      'airState.filterMngStates.maxTime': number
+      'airState.filterMngStates.useTime': number
+      'airState.filterMngStates.changeDate': number
+    }
+  }
+}
+
 export type GetDashboardResponse = {
   resultCode: '0000'
   result: {

@@ -4,7 +4,8 @@ import { PLATFORM_NAME, PLUGIN_NAME } from './settings'
 import { HomebridgeLgThinqPlatform } from './platform'
 import { GetDashboardResponse } from './thinq/apiTypes'
 import AbstractCharacteristic from './characteristic/abstractCharacteristic'
-import getCharacteristicsForModel from './getCharacteristicsForModel'
+// import getCharacteristicsForModel from './getCharacteristicsForModel'
+import getCharacteristicsForModel_ad from './getCharacteristicsForModel_ad'
 
 type Unpacked<T> = T extends (infer U)[] ? U : T
 
@@ -53,6 +54,10 @@ export class LgAirConditionerPlatformAccessory {
       )
       .setCharacteristic(this.platform.Characteristic.Model, model)
       .setCharacteristic(
+        this.platform.Characteristic.SerialNumber,
+        this.getDeviceId() || 'Default Serial Number',
+      )
+      .setCharacteristic(
         this.platform.Characteristic.Name,
         this.getDevice()?.alias || 'Not available',
       )
@@ -66,7 +71,7 @@ export class LgAirConditionerPlatformAccessory {
     // this.accessory.getService('NAME') ?? this.accessory.addService(this.platform.Service.Lightbulb, 'NAME', 'USER_DEFINED_SUBTYPE');
 
     const deviceId = this.getDeviceId()!
-    this.characteristics = getCharacteristicsForModel(
+    this.characteristics = getCharacteristicsForModel_ad(
       model,
       this.platform,
       this.service,
@@ -102,9 +107,20 @@ export class LgAirConditionerPlatformAccessory {
 
     try {
       this.platform.log.debug('Getting device status', this.getDeviceId())
+
       const device = await this.platform.thinqApi.getDevice(this.getDeviceId()!)
       this.platform.log.debug('device response', device)
+
+      const filterStatus = await this.platform.thinqApi.getDeviceFilterStatus(
+        this.getDeviceId()!,
+      )
+      this.platform.log.debug('filter status response', filterStatus)
+
       const snapshot = device.result.snapshot
+      snapshot['airState.filterMngStates.maxTime'] =
+        filterStatus.result.data['airState.filterMngStates.maxTime']
+      snapshot['airState.filterMngStates.useTime'] =
+        filterStatus.result.data['airState.filterMngStates.useTime']
       this.platform.log.debug('device response.result.snapshot', snapshot)
 
       for (const characteristic of this.characteristics) {

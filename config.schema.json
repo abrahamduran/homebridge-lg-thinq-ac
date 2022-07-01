@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "LgThinqAirConditioner",
+  "pluginAlias": "LgThinqAirConditionerAD",
   "pluginType": "platform",
   "singular": true,
   "schema": {

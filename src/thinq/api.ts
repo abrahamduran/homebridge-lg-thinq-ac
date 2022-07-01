@@ -6,6 +6,7 @@ import {
   GetDashboardResponse,
   GetGatewayUriResponse,
   ApiHeaders,
+  GetFilterStatusResponse,
 } from './apiTypes'
 import ThinqAuth from './auth'
 import { PartialThinqConfig, ThinqConfig } from './thinqConfig'
@@ -51,6 +52,24 @@ export default class ThinqApi {
       headers: this.generateHeaders(),
     })
     return response.data as GetDeviceResponse
+  }
+
+  async getDeviceFilterStatus(deviceId: string) {
+    const response = await axios({
+      method: 'POST',
+      responseType: 'json',
+      url: `${this.thinqConfig.apiBaseUri}/service/devices/${deviceId}/control-sync`,
+      headers: this.generateHeaders(),
+      data: {
+        command: 'Get',
+        ctrlKey: 'filterMngStateCtrl',
+        dataGetList: [
+            'airState.filterMngStates.useTime',
+            'airState.filterMngStates.maxTime'
+        ]
+      }
+    })
+    return response.data as GetFilterStatusResponse
   }
 
   async sendAllEventEnable(deviceId: string) {
