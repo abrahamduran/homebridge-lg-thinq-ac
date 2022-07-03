@@ -5,6 +5,12 @@
   "schema": {
     "type": "object",
     "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "LG ThinQ",
+        "required": true
+      },
       "country_code": {
         "title": "Country code",
         "type": "string",
