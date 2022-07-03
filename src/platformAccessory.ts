@@ -95,6 +95,8 @@ export class LgAirConditionerPlatformAccessory {
       model,
       this.platform,
       this.deviceService,
+      this.energySaverService,
+      this.jetModeService,
       deviceId,
       this.platform.log,
     )

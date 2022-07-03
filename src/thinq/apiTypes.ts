@@ -58,6 +58,8 @@ export type GetDeviceResponse = {
       'airState.diagCode': number
       'airState.wDir.vStep': number
       'airState.energy.onCurrent': number
+      'airState.powerSave.basic': number
+      'airState.wMode.jet': number
     }
     online: true
     platformType: string
