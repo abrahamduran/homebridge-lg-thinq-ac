@@ -1,7 +1,5 @@
 import type { Logger, Service } from 'homebridge'
-
 import type { HomebridgeLgThinqPlatform } from './platform'
-
 import ActiveCharacteristic from './characteristic/activeCharacteristic'
 import AbstractCharacteristic from './characteristic/abstractCharacteristic'
 import CoolingThresholdTemperatureCharacteristic_AD from './characteristic/coolingThresholdTemperatureCharacteristic_ad'
