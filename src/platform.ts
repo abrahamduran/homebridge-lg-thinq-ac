@@ -361,7 +361,7 @@ export class HomebridgeLgThinqPlatform implements DynamicPlatformPlugin {
       // this.log.debug('config', config) DO NOT COMMIT THIS -- it could accidentally leak into GitHub issue reports
       const platforms = config.platforms.filter(
         (platform: Record<string, string>) =>
-          platform.platform === 'LgThinqAirConditionerDev',
+          platform.platform === 'LgThinqAirConditionerAD',
       )
       const authConfig = this.thinqAuth!.serializeToConfig()
       const generalConfig = {
