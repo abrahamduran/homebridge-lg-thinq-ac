@@ -135,6 +135,7 @@ export type GetDashboardResponse = {
       langPackProductTypeVer: number
       langPackProductTypeUri: string
       deviceState: string
+      // eslint-disable-next-line @typescript-eslint/ban-types
       snapshot: GetDeviceResponse['result']['snapshot'] | {} // could be a different product
       online: true
       platformType: string

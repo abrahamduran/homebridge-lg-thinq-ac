@@ -1,5 +1,4 @@
-import type { Service, Characteristic, CharacteristicValue, CharacteristicSetCallback, CharacteristicProps } from 'homebridge'
-
+import type { Service, Characteristic } from 'homebridge'
 import { HomebridgeLgThinqPlatform } from '../platform'
 import AbstractCharacteristic from './abstractCharacteristic'
 
@@ -79,7 +78,6 @@ export default class TargetHeaterCoolerStateCharacteristic_AD extends AbstractCh
   // }
 
   getStateFromApiValue(apiValue: ApiValue): State {
-    this.logDebug('AD: API Value', apiValue)
     switch (apiValue) {
       case 0:
         return this.characteristic.COOL
@@ -93,7 +91,6 @@ export default class TargetHeaterCoolerStateCharacteristic_AD extends AbstractCh
   }
 
   getApiValueFromState(state: State): ApiValue {
-    this.logDebug('AD: State', state)
     switch (state) {
       case this.characteristic.COOL:
         return 0
