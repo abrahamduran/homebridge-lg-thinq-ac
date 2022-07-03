@@ -1,5 +1,4 @@
 import type { Service, Characteristic, CharacteristicProps } from 'homebridge'
-
 import type { GetDeviceResponse } from '../thinq/apiTypes'
 import { HomebridgeLgThinqPlatform } from '../platform'
 import AbstractCharacteristic from './abstractCharacteristic'
@@ -76,25 +75,26 @@ export default class AbstractSplithresholdCharacteristic_AD extends AbstractChar
     //     this.localService
     //       .getCharacteristic(this.characteristic)
     //       .setProps(COOLING_TARGET_PROPS)
-    //       this.logDebug('Setting Cooling Props', COOLING_TARGET_PROPS)
-    //     break;
+
+    //     this.logDebug('Setting Cooling Props', COOLING_TARGET_PROPS)
+    //     break
 
     //   case this.localPlatform.Characteristic.TargetHeaterCoolerState.HEAT:
     //     this.localService
     //       .getCharacteristic(this.characteristic)
     //       .setProps(HEATING_TARGET_PROPS)
-    //       this.logDebug('Setting Heating Props', HEATING_TARGET_PROPS)
-    //     break;
+    //     this.logDebug('Setting Heating Props', HEATING_TARGET_PROPS)
+    //     break
 
     //   case this.localPlatform.Characteristic.TargetHeaterCoolerState.AUTO:
     //     this.localService
     //       .getCharacteristic(this.characteristic)
     //       .setProps(AUTO_TARGET_PROPS)
-    //       this.logDebug('Setting Auto Props', AUTO_TARGET_PROPS)
-    //     break;
+    //     this.logDebug('Setting Auto Props', AUTO_TARGET_PROPS)
+    //     break
 
     //   default:
-    //     break;
+    //     break
     // }
 
     super.handleUpdatedSnapshot(snapshot)

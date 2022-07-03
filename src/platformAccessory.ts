@@ -15,7 +15,9 @@ type Unpacked<T> = T extends (infer U)[] ? U : T
  * Each accessory may expose multiple services of different service types.
  */
 export class LgAirConditionerPlatformAccessory {
-  private service: Service
+  private deviceService: Service
+  private energySaverService: Service
+  private jetModeService: Service
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private characteristics: Array<AbstractCharacteristic<any, any, any>>
   private updateCharacteristicsInterval: NodeJS.Timeout
@@ -62,9 +64,27 @@ export class LgAirConditionerPlatformAccessory {
         this.getDevice()?.alias || 'Not available',
       )
 
-    this.service =
+    this.deviceService =
       this.accessory.getService(this.platform.Service.HeaterCooler) ??
       this.accessory.addService(this.platform.Service.HeaterCooler)
+
+    // Switch for Energy Saver Mode
+    this.energySaverService =
+      this.accessory.getService('Energy Saver Switch') ??
+      this.accessory.addService(
+        this.platform.Service.Switch,
+        'Energy Saver Switch',
+        'ENERGY_SAVER_SWITCH',
+      )
+
+    // Switch for Jet Mode
+    this.jetModeService =
+      this.accessory.getService('Jet Mode Switch') ??
+      this.accessory.addService(
+        this.platform.Service.Switch,
+        'Jet Mode Switch',
+        'Jet_MODE_SWITCH',
+      )
 
     // To avoid "Cannot add a Service with the same UUID another Service without also defining a unique 'subtype' property." error,
     // when creating multiple services of the same type, you need to use the following syntax to specify a name and subtype id:
@@ -74,7 +94,9 @@ export class LgAirConditionerPlatformAccessory {
     this.characteristics = getCharacteristicsForModel_ad(
       model,
       this.platform,
-      this.service,
+      this.deviceService,
+      this.energySaverService,
+      this.jetModeService,
       deviceId,
       this.platform.log,
     )
