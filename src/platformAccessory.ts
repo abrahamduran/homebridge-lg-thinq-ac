@@ -15,7 +15,7 @@ type Unpacked<T> = T extends (infer U)[] ? U : T
  * Each accessory may expose multiple services of different service types.
  */
 export class LgAirConditionerPlatformAccessory {
-  private service: Service
+  private deviceService: Service
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private characteristics: Array<AbstractCharacteristic<any, any, any>>
   private updateCharacteristicsInterval: NodeJS.Timeout
@@ -62,7 +62,7 @@ export class LgAirConditionerPlatformAccessory {
         this.getDevice()?.alias || 'Not available',
       )
 
-    this.service =
+    this.deviceService =
       this.accessory.getService(this.platform.Service.HeaterCooler) ??
       this.accessory.addService(this.platform.Service.HeaterCooler)
 
@@ -74,7 +74,7 @@ export class LgAirConditionerPlatformAccessory {
     this.characteristics = getCharacteristicsForModel_ad(
       model,
       this.platform,
-      this.service,
+      this.deviceService,
       deviceId,
       this.platform.log,
     )
