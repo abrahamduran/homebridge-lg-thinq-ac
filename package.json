@@ -1,7 +1,7 @@
 {
   "displayName": "LG ThinQ Air Conditioner (@abrahamduran)",
   "name": "homebridge-lg-thinq-ac-abrahamduran",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "Homebridge plugin for LG ThinQ-enabled Air Conditioners tailored to the custom needs of @abrahamduran based on the work by @sman591.",
   "license": "Apache-2.0",
   "repository": {
