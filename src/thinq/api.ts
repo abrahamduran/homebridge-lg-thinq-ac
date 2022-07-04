@@ -64,10 +64,10 @@ export default class ThinqApi {
         command: 'Get',
         ctrlKey: 'filterMngStateCtrl',
         dataGetList: [
-            'airState.filterMngStates.useTime',
-            'airState.filterMngStates.maxTime'
-        ]
-      }
+          'airState.filterMngStates.useTime',
+          'airState.filterMngStates.maxTime',
+        ],
+      },
     })
     return response.data as GetFilterStatusResponse
   }

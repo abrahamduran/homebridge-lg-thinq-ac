@@ -12,6 +12,7 @@ import FilterLifeCharacteristic from './characteristic/filterLifeCharacteristic'
 import SwingModeCharacteristic from './characteristic/swingModeCharacteristic'
 import EnergySaverModeSwitchCharacteristic from './characteristic/energySaverModeSwitchCharacteristic'
 import JetModeSwitchCharacteristic from './characteristic/jetModeSwitchCharacteristic'
+import RotationSpeedCharacteristic from './characteristic/rotationSpeedCharacteristic'
 
 export default function getCharacteristicsForModel_ad(
   model: string,
@@ -25,8 +26,7 @@ export default function getCharacteristicsForModel_ad(
 ): Array<AbstractCharacteristic<any, any, any>> {
   return [
     new ActiveCharacteristic(platform, deviceService, deviceId),
-    // TODO: These units (or at least RAC_056905_WW does) support variable-position, not just "all or nothing"
-    // new RotationSpeedCharacteristic(platform, service, deviceId, 4),
+    new RotationSpeedCharacteristic(platform, deviceService, deviceId),
     new EnergySaverModeSwitchCharacteristic(
       platform,
       energySaverService,

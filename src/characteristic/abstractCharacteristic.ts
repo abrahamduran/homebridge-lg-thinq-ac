@@ -4,7 +4,6 @@ import type {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Characteristic as HomebridgeCharacteristic,
   CharacteristicValue,
-  CharacteristicGetCallback,
   CharacteristicSetCallback,
   WithUUID,
 } from 'homebridge'
