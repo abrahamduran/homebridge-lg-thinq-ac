@@ -12,7 +12,7 @@ import FilterLifeCharacteristic from './characteristic/filterLifeCharacteristic'
 import SwingModeCharacteristic from './characteristic/swingModeCharacteristic'
 import EnergySaverModeSwitchCharacteristic from './characteristic/energySaverModeSwitchCharacteristic'
 import JetModeSwitchCharacteristic from './characteristic/jetModeSwitchCharacteristic'
-import RotationSpeedCharacteristic from './characteristic/rotationSpeedCharacteristic'
+import RotationSpeedCharacteristic_AD from './characteristic/rotationSPeedCharacteristic_ad'
 
 export default function getCharacteristicsForModel_ad(
   model: string,
@@ -26,7 +26,7 @@ export default function getCharacteristicsForModel_ad(
 ): Array<AbstractCharacteristic<any, any, any>> {
   return [
     new ActiveCharacteristic(platform, deviceService, deviceId),
-    new RotationSpeedCharacteristic(platform, deviceService, deviceId),
+    new RotationSpeedCharacteristic_AD(platform, deviceService, deviceId),
     new EnergySaverModeSwitchCharacteristic(
       platform,
       energySaverService,
